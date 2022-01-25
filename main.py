@@ -319,14 +319,14 @@ def get_waka_time_stats():
         data = request.json()
         if showCommit.lower() in truthy:
             empty = False
-            stats = stats + generate_commit_list(tz=data['data']['timezone']) + '\n\n'
+            stats += generate_commit_list(tz=data['data']['timezone']) + '\n\n'
 
         #stats += '📊 **' + translate['This Week I Spend My Time On'] + '** \n\n'
         stats += '```text\n'
         if showTimeZone.lower() in truthy:
             empty = False
             tzone = data['data']['timezone']
-            stats = stats + '⌚︎ ' + translate['Timezone'] + ': ' + tzone + '\n\n'
+            stats += '⌚︎ ' + translate['Timezone'] + ': ' + tzone + '\n\n'
 
         if showLanguage.lower() in truthy:
             empty = False
@@ -334,7 +334,7 @@ def get_waka_time_stats():
                 lang_list = no_activity
             else:
                 lang_list = make_list(data['data']['languages'])
-            stats = stats + '💬 ' + translate['Languages'] + ': \n' + lang_list + '\n\n'
+            stats += '💬 ' + translate['Languages'] + ': \n' + lang_list + '\n\n'
 
         if showEditors.lower() in truthy:
             empty = False
@@ -342,7 +342,7 @@ def get_waka_time_stats():
                 edit_list = no_activity
             else:
                 edit_list = make_list(data['data']['editors'])
-            stats = stats + '🔥 ' + translate['Editors'] + ': \n' + edit_list + '\n\n'
+            stats += '📝 ' + translate['Editors'] + ': \n' + edit_list + '\n\n'
 
         if showProjects.lower() in truthy:
             empty = False
@@ -352,7 +352,7 @@ def get_waka_time_stats():
                 # Re-order the project list by percentage
                 data['data']['projects'] = sorted(data['data']['projects'], key=lambda x: x["percent"], reverse=True)
                 project_list = make_list(data['data']['projects'])
-            stats = stats + '🐱‍💻 ' + translate['Projects'] + ': \n' + project_list + '\n\n'
+            stats += '📚 ' + translate['Projects'] + ': \n' + project_list + '\n\n'
 
         if showOs.lower() in truthy:
             empty = False
@@ -360,7 +360,7 @@ def get_waka_time_stats():
                 os_list = no_activity
             else:
                 os_list = make_list(data['data']['operating_systems'])
-            stats = stats + '💻 ' + translate['operating system'] + ': \n' + os_list + '\n\n'
+            stats += '💻 ' + translate['operating systems'] + ': \n' + os_list + '\n\n'
 
         stats += '```\n\n'
         if empty:
@@ -497,17 +497,17 @@ def get_stats(github):
         stats += get_waka_time_stats()
 
     if showLanguagePerRepo.lower() in truthy:
-        stats = stats + generate_language_per_repo(repositoryList) + '\n\n'
+        stats += generate_language_per_repo(repositoryList) + '\n\n'
 
     if showLocChart.lower() in truthy:
         stats += '**' + translate['Timeline'] + '**\n\n'
         branch_name = github.get_repo(f'{username}/{username}').default_branch
-        stats = stats + '![Chart not found](https://raw.githubusercontent.com/' + username + '/' + username + '/' + branch_name + '/charts/bar_graph.png) \n\n'
+        stats += '![Chart not found](https://raw.githubusercontent.com/' + username + '/' + username + '/' + branch_name + '/charts/bar_graph.png) \n\n'
 
     if show_updated_date.lower() in truthy:
         now = datetime.datetime.utcnow()
         d1 = now.strftime("%d/%m/%Y %H:%M:%S")
-        stats = stats + "\n Last Updated on " + d1 + " UTC"
+        stats += "\n Last Updated on " + d1 + " UTC"
 
     return stats
 
