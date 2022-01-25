@@ -507,7 +507,7 @@ def get_stats(github):
     if show_updated_date.lower() in truthy:
         now = datetime.datetime.utcnow()
         d1 = now.strftime("%d/%m/%Y %H:%M:%S")
-        stats += "\n Last Updated on " + d1 + " UTC"
+        stats += "\n *Updated on " + d1 + " UTC*"
 
     return stats
 
