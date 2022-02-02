@@ -1,6 +1,6 @@
-name: 'Profile Readme Development Stats'
-author: Anmol Pratap Singh
-description: 'Are you an early 🐤 or a night 🦉? When are you most productive during the day? Let''s check out in your readme!'
+name: 'waka-readme-stats'
+author: miermontoto
+description: 'Add coding stats from waka-time to your README.'
 
 inputs:
   GH_TOKEN:
